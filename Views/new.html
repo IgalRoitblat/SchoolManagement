@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Main Page</title>
+	<link rel="stylesheet" type="text/css" href="../Style/default_style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200" rel="stylesheet">
+</head>
+<body>
+	{% include 'header.html' %}
+	<main>
+		<div class="dashboard_body">
+			{% include 'nav.html' %}
+			<div class="main_content">
+				<form action="/{{ type }}/add" method="POST" enctype="multipart/form-data">
+					<div class="content_nav">
+					<h2>Add New</h2>
+					<div class="action_input_container"><input class="material-icons button green delete" type="submit" value=""><i class="material-icons delete_icon">save</i></div>
+					</div>
+					<label>
+						<span>
+							Name
+						</span>
+						<input type="text" name="name" placeholder="Enter the name here">
+					</label>
+					<label>
+						{% if type != 'Course' %}
+						<span>
+							Phone
+						</span>
+						<input type="text" name="phone" placeholder="Enter phone here" required>
+					</label>
+					<label>
+						<span>
+							Email
+						</span>
+						<input type="email" name="email" placeholder="Enter email here" required>
+					</label>
+						{% endif %}
+					<label>
+						<span>
+							Image
+						</span>
+						<input type="file" name="image" placeholder="Upload image here" accept="image/*" required>
+					</label>
+						{% if type == 'Administrator' %}
+							<label>
+								<span>
+									Password
+								</span>
+								<input type="password" name="password" placeholder="Enter the admin password here">
+							</label>
+						{% endif %}
+						{% if type == 'Course' %}
+							<label>
+								<span>
+									Description:
+								</span>
+								<textarea class="description_label" name="description" placeholder="Enter the course description here" rows="10" cols="100"></textarea>
+							</label>
+						{% endif %}
+						<div id="wrapper">
+							<h4 class="preview_header">Preview</h4>
+							<div id="output_image"/>
+						</div>
+						{% if type  == 'Administrator' %}
+					<label>
+						<h4>
+							Roles
+						</h4>
+						<select name="role">
+						{% for role in roles %}
+							{% if role.id != 1 %}
+								<option value="{{role.id}}" >{{role.name}}</option>
+							{% endif %}
+						{% endfor %}
+						</select>
+					</label>
+						{% endif %}
+						{% if type  == 'Student' %}
+							<label>
+								<h4>
+									Courses
+								</h4>
+								{% for course_available in courses_available %}
+									<span>{{course_available.name}}</span>
+									<input name="check_list[]" type="checkbox" value="{{course_available.id}}">
+								{% endfor %}
+							</label>
+						{% endif %}
+						{% if type  == 'Course' %}
+							<label>
+								<h4>
+									Students
+								</h4>
+								{% for student_available in students_available %}
+									<span>{{student_available.name}}</span>
+									<input name="check_list[]" type="checkbox" value="{{student_available.id}}">
+								{% endfor %}
+							</label>
+						{% endif %}
+				</form>
+			</div>
+		</div>
+	</main>
+	<script src="../Scripts/image_preview.js"></script>
+	<script src="../../Scripts/form_validation.js"></script>
+</body>
+</html>

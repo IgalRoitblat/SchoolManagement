@@ -1,0 +1,66 @@
+<nav>
+	<h4>Info Groups</h4>
+	<ul class="collection">
+		<li class="collection-item"><a class="collection-item-link" href="/students">
+			<i class="material-icons">school</i>
+			<span>Students</span>
+		</a></li>
+		<li class="collection-item"><a class="collection-item-link" href="/courses">
+			<i class="material-icons">library_books</i>
+			<span>Courses</span>
+		</a></li>
+	</ul>
+</nav>
+{% if courses %}
+	<ul class="item_breakdown">
+		<div class="content_nav">
+			<h2>
+				Courses
+			</h2>
+			<div class="buttons">
+				<div class="button blue"><a href="/Course/insert"><i class="material-icons">add</i></a></div>
+			</div>
+		</div>
+			{% for course in courses %}
+			    <a href="/Course/{{course.id}}"><li><div class="item_image" style="background-image: url(/images/{{course.image_url}});"></div><span class="course_name">{{course.name}}</span></li></a>
+			{% endfor %}
+	</ul>
+{% endif %}
+{% if students %}
+	<ul class="item_breakdown">
+		<div class="content_nav">
+			<h2>
+				Students
+			</h2>
+			<div class="buttons">
+				<div class="button blue"><a href="/Student/insert"><i class="material-icons">add</i></a></div>
+			</div>
+		</div>
+			{% for student in students %}
+			    <a href="/Student/{{student.id}}"><li><div class="item_image" style="background-image: url(/images/{{student.image_url}});"></div><span class="student_name">{{student.name}}</span></li></a>
+			{% endfor %}
+	</ul>
+{% endif %}
+{% if admins %}
+	<ul class="item_breakdown">
+		<div class="content_nav">
+			<h2>
+				Admins
+			</h2>
+			<div class="buttons">
+				<div class="button blue"><a href="/Administrator/insert"><i class="material-icons">add</i></a></div>
+			</div>
+		</div>
+			{% if admin.role == 1 %}
+				{% for admin in admins %}
+				    <a href="/Administrator/{{admin.id}}"><li><div class="item_image" style="background-image: url(/images/{{admin.image_url}});"></div><span class="item_name">{{admin.name}}</span></li></a>	
+				{% endfor %}
+			{% else %} {% for admin in admins %}
+							{% if admin.role != 1 %}
+								<a href="/Administrator/{{admin.id}}"><li><div class="item_image" style="background-image: url(/images/{{admin.image_url}});"></div><span class="item_name">{{admin.name}}</span></li></a>
+							{% endif %}
+						{% endfor %}
+			{% endif %}
+
+	</ul>
+{% endif %}

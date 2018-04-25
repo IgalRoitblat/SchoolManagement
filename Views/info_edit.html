@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student</title>
+	<link rel="stylesheet" type="text/css" href="../../Style/default_style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200" rel="stylesheet">
+</head>
+<body>
+	{% include 'header.html' %}
+	<main>
+		<div class="dashboard_body">
+		{% include 'nav.html' %}
+			<div class="main_content">
+			{% if type == 'Course' %}
+
+				<form id="actions_form" action="/{{type}}/updated/{{course.id}}" method="POST" enctype="multipart/form-data">
+					<div class="content_nav">
+						<h2>{{course.name}}</h2>
+								<div class="action_input_container"><input class="material-icons button green delete" type="submit" value=""><i class="material-icons delete_icon">save</i></div>
+					</div>
+					<label>
+						<div class="selected_item_image" style="background-image: url(/images/{{course.image_url}});"></div>
+						<input class="hiddent_image_input" type="file" name="image" hidden>
+						<input class="hiddent_image_input" type="text" name="prev_image" value="{{course.image_url}}" hidden>
+					</label>
+						<div id="wrapper">
+							<h4 class="preview_header">New Image</h4>
+							<img id="output_image"/>
+						</div>
+					<label>
+						<span>
+							Name:
+						</span>
+						<input type="text" name="name" value="{{course.name}}" required>
+					</label>
+					<label class="description_label">
+						<span>
+							Description:
+						</span>
+						<textarea name="description" rows="10" cols="100" minlength="10" required>{{course.description}} </textarea>
+					</label>
+					<h3>Students taking this course:</h3>
+						<ul>
+						{% for course_student in course_students %}
+							<li>{{course_student.name}}</li>
+						{% endfor %}
+						</ul>
+					<label>
+						<h3>
+							Other Students
+						</h3>
+						{% for student_available in students_available %}
+								<input name="check_list[]" type="checkbox" value="{{student_available.id}}" {% for course_student in course_students %} {% if student_available.name == course_student.name %} checked {% endif %}{% endfor %}>
+								<span class="checkbox-label">{{student_available.name}}</span>
+						{% endfor %}
+					</label>	
+				</form>
+			{% endif %}
+			{% if type == 'Student' %}
+				<form id="actions_form" action="/{{type}}/updated/{{student.id}}" method="POST" enctype="multipart/form-data">
+					<div class="content_nav">
+						<h2>{{student.name}}</h2>
+								<div class="action_input_container"><input class="material-icons button green delete" type="submit" value=""><i class="material-icons delete_icon">save</i></div>
+						</div>
+					<label>
+						<div class="selected_item_image" style="background-image: url(/images/{{student.image_url}});"></div>
+						<input class="hiddent_image_input" type="file" name="image" hidden>
+						<input class="hiddent_image_input" type="text" name="prev_image" value="{{student.image_url}}" hidden>
+					</label>
+						<div id="wrapper">
+							<h4 class="preview_header">New Image</h4>
+							<div id="output_image"/>
+						</div>
+					<label>
+						<span>
+							Name:
+						</span>
+						<input type="text" name="name" value="{{student.name}}" required>
+					</label>
+					<label>
+						<span>
+							Phone:
+						</span>
+						<input type="text" name="phone" value="{{student.phone}}" required>
+					</label>
+					<label>
+						<span>
+							Email:
+						</span>
+						<input type="email" name="email" value="{{student.email}}" required>
+					</label>
+					<h3>Courses taken:</h3>
+						<ul>
+						{% for student_course in student_courses %}
+							<li>{{student_course.name}}</li>
+						{% endfor %}
+						</ul>
+					<label>
+						<h3>
+							Courses Available
+						</h3>
+						{% for course_available in courses_available %}
+								<input name="check_list[]" type="checkbox" value="{{course_available.id}}" {% for student_course in student_courses %} {% if course_available.name == student_course.name %} checked {% endif %}{% endfor %}>
+								<span class="checkbox-label">{{course_available.name}}</span>
+						{% endfor %}
+					</label>	
+				</form>
+			{% endif %}
+			{% if type == 'Administrator' %}
+				<form id="actions_form" action="/{{type}}/updated/{{admin_info.id}}" method="POST" enctype="multipart/form-data">
+					<div class="content_nav">
+						<h2>{{admin_info.name}}</h2>
+							<div class="action_input_container"><input class="material-icons button green delete" type="submit" value=""><i class="material-icons delete_icon">save</i></div>
+					</div>
+					<label>
+						<div class="selected_item_image" style="background-image: url(/images/{{admin_info.image_url}});"></div>
+						<input class="hiddent_image_input" type="file" name="image" hidden>
+						<input class="hiddent_image_input" type="text" name="prev_image" value="{{admin_info.image_url}}" hidden>
+					</label>
+						<div id="wrapper">
+							<h4 class="preview_header">New Image</h4>
+							<img id="output_image"/>
+						</div>
+					<label>
+					<label>
+						<span>
+							Name:
+						</span>
+						<input type="text" name="name" value="{{admin_info.name}}" required>
+					</label>
+					<label>
+						<span>
+							Phone:
+						</span>
+						<input type="text" name="phone" value="{{admin_info.phone}}" required>
+					</label>
+					<label>
+						<span>
+							Email:
+						</span>
+						<input type="email" name="email" value="{{admin_info.email}}" required>
+					</label>
+					{% if admin_info.role_id != 1 %}
+					<label>
+						<span>
+							Role:
+						</span>
+						<span>{{admin_info.role_name}}</span>
+					</label>
+					{% else %} 
+					<label>
+						<span>
+							Role:
+						</span>
+						<select name="role">
+						{% for role in roles %}
+							<option value="{{role.id}}">{{role.name}}</option>
+						{% endfor %}
+						</select>
+					</label>
+					{% endif %}
+				</form>
+			{% endif %}
+			</div>
+		</div>
+	</main>
+	<script src="../../Scripts/image_preview.js"></script>
+	<script src="../../Scripts/missing_file.js"></script>
+	<script src="../../Scripts/form_validation.js"></script>
+</body>
+</html>

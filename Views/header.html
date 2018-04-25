@@ -1,0 +1,12 @@
+<header>
+	<img class="logo" src="/images/logo-school-hi.png" alt="logo">
+	<nav>
+		<a class="nav-link" href="/school">School</a>
+		{% if admin.role != 3 %}<a class="nav-link" href="/administrator">Administration</a>{% endif %}
+	</nav>
+	<div class="user">
+		<span>{{ admin.name }}</span>
+		<a href="/Administrator/{{admin.id}}"><div class="avatar" style="background-image: url(/images/{{admin.image_url}});"></div></a>
+		<span><a href="/">Logout</a></span>
+	</div>
+</header>

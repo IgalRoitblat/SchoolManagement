@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="../Style/default_style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200" rel="stylesheet">
+</head>
+<body class="login_body">
+	<main class="login-container">
+		<h1>Welcome to our school!</h1>
+		<img class="logo" src="../images/logo-school-hi.png" alt="logo">
+		<h2>Please verify your identity:</h2>
+		<div class="form-container">
+			<form action="/validate" method="POST">
+				<label>
+					<span>User Name:</span>
+					<input type="text" name="username" required>
+				</label>
+				<label>
+					<span>Password:</span>
+					<input type="password" name="password" required>
+				</label>
+				<input class="submit" type="submit" value="Log In">
+			</form>
+			<div>
+				<h3>Try:</h3>
+				<ul>
+					<li>User Name: <span class="credenntials_span">Owner</span>, Password: <span class="credenntials_span">1111</span></li>
+					<li>User Name: <span class="credenntials_span">Manager</span>, Password: <span class="credenntials_span">12345</span></li>
+					<li>User Name: <span class="credenntials_span">Sales</span>, Password: <span class="credenntials_span">12345</span></li>
+				</ul>
+			</div>
+		</div>
+	</main>
+</body>
+</html>

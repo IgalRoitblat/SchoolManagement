@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Item Info</title>
+	<link rel="stylesheet" type="text/css" href="../Style/default_style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200" rel="stylesheet">
+</head>
+<body>
+	{% include 'header.html' %}
+	<main>
+		<div class="dashboard_body">
+			{% include 'nav.html' %}
+			<div class="main_content">
+			{% if type == 'Student' %}
+					<div class="content_nav">
+						<h2>{{student.name}}</h2>
+						<div class="buttons">
+							<div class="button green"><a href="/{{type}}/update/{{student.id}}"><i class="material-icons">edit</i></a></div>
+							<form id="actions_form" action="/{{type}}/delete/{{student.id}}" method="POST">
+								<input type="hidden" name="id_to_delete" value="{{student.id}}">
+								<div class="action_input_container"><input class="material-icons button red delete" type="submit" value=""><i class="material-icons delete_icon">delete</i></div>
+							</form>
+						</div>
+					</div>		
+					<div class="selected_item_image" style="background-image: url(/images/{{student.image_url}});"></div>
+					<div class="personal_info">
+						<h3>{{student.name}}</h3>
+						<span>{{student.phone}}</span>
+						<span>{{student.email}}</span>
+					</div>
+					<div class="enrollment">
+						<h3>Courses taken:</h3>
+						<ul>
+							{% for student_course in student_courses %}
+								<li>{{student_course.name}}</li>
+							{% endfor %}
+						</ul>
+					</div>
+			{% endif %}
+			{% if type == 'Course' %}
+					{% if admin.role != 3 %}
+					<div class="content_nav">
+						<h2>{{course.name}}</h2>
+						<div class="buttons">
+							<div class="button green"><a href="/{{type}}/update/{{course.id}}"><i class="material-icons">edit</i></a></div>
+							<form id="actions_form" action="/{{type}}/delete/{{course.id}}" method="POST">
+								<input type="hidden" name="id_to_delete" value="{{course.id}}">
+								<div class="action_input_container"><input class="material-icons button red delete" type="submit" value=""><i class="material-icons delete_icon">delete</i></div>
+							</form>
+						</div>
+					</div>
+					{% endif %}
+					<div class="selected_item_image" style="background-image: url(/images/{{course.image_url}});"></div>
+					<div class="personal_info">
+						<h3>{{course.name}}</h3>
+						<span>{{course.description}}</span>
+					</div>
+					<div class="enrollment">
+						<h3>Students In Class:</h3>
+						<ul>
+							{% for course_student in course_students %}
+								<li>{{course_student.name}}</li>
+							{% endfor %}
+						</ul>
+					</div>
+			{% endif %}
+			{% if type == 'Administrator' %}
+					<div class="content_nav">
+						<h2>{{admin_info.name}}</h2>
+						<div class="buttons">
+							{% if admin.role == 1 %}
+							<div class="button green"><a href="/{{type}}/update/{{admin_info.id}}"><i class="material-icons">edit</i></a></div>
+							{% else %} {% if admin_info.role_id != 1 %}
+							<div class="button green"><a href="/{{type}}/update/{{admin_info.id}}"><i class="material-icons">edit</i></a></div>
+							{% endif %}
+							{% endif %}
+							{% if (admin.role == 1) or (admin.id != admin_info.id) %}
+							<form id="actions_form" action="/{{type}}/delete/{{admin_info.id}}" method="POST">
+								<input type="hidden" name="id_to_delete" value="{{admin_info.id}}">
+								<div class="action_input_container"><input class="material-icons button red delete" type="submit" value=""><i class="material-icons delete_icon">delete</i></div>
+							</form>
+							{% endif %}
+						</div>
+					</div>
+					<div class="selected_item_image" style="background-image: url(/images/{{admin_info.image_url}});"></div>
+					<div class="personal_info">
+						<h3>{{admin_info.name}}</h3>
+						<h3>Personal Info:</h3>
+						<ul>
+							<li>{{admin_info.phone}}</li>
+							<li>{{admin_info.email}}</li>
+							<li>{{admin_info.role_name}}</li>
+						</ul>
+					</div>
+			{% endif %}
+			</div>
+		</div>	
+	</main>
+</body>
+</html>

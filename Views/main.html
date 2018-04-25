@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Main Page</title>
+	<link rel="stylesheet" type="text/css" href="../Style/default_style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200" rel="stylesheet">
+</head>
+<body>
+	{% include 'header.html' %}
+	<main>
+		<div class="dashboard_body">
+		{% include 'nav.html' %}
+		{% if type == 'Administrator' %}
+			<div class="main_content">
+				<p>There are {{admin_count}} admins in the system</p>
+			</div>
+		{% else %}			
+			<div class="main_content">
+				<p>There are {{student_count}} registered students and {{course_count}} courses in the system</p>
+			</div>
+		{% endif %}
+		</div>
+	</main>
+</body>
+</html>

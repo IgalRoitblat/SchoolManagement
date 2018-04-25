@@ -1,0 +1,354 @@
+main, header, .dashboard_body {
+	font-family: 'Source Sans Pro', sans-serif;
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+}
+
+main {
+	background-color: #f8f9fa;
+	box-shadow: .5px .5px #6c757d;
+
+}
+
+header {
+	justify-content: space-between;
+	align-items: center;
+	height: 5rem;
+	background-color: white;
+	padding: .5rem;
+	box-shadow: .1px .1px #6c757d;
+}
+
+header nav {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	width: 40%;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	margin: 1rem;
+}
+
+.logo {
+	height: 4rem;
+	width: 5rem;
+	padding-left: 2rem;
+}
+
+.user {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.user span {
+	width: 100%;
+	text-align: center;
+}
+
+.user span a, .user a {
+	margin: 0rem;
+}
+
+
+.item_breakdown {
+	margin: 1rem;
+	padding: 1rem;
+	background-color: white;
+	width: 30%;
+} 
+
+.main_content {
+	flex-grow: 1;
+	margin: 1rem;
+	padding: 1rem;
+	background-color: white;
+	width: 45%;
+}
+
+.dashboard_body nav {
+	height: 100vh;
+	width: 15%;
+	background-color: #343a40;
+	color: white;
+	box-shadow: .5px .5px #6c757d;
+} 
+
+.item_image, .avatar {
+	background-size: cover;
+	background-position: center;
+	height: 3rem;
+	width: 3rem;
+	border: 1px solid #6c757d;
+	border-radius: 50%;
+}
+
+.item_breakdown li {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px solid #eeeff0;
+	margin: 1rem;
+	padding-bottom: 0.5rem;
+}
+
+.item_breakdown li span {
+	margin-left: 1rem;
+}
+
+.difficulty {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #20c997;
+	color: white;
+	font-size: .8rem;
+	height: 2rem;
+	width: 4rem;
+	border-radius: 15%;
+}
+
+.selected_item_image {
+	height: 6rem;
+	width: 6rem;
+	background-size: cover;
+	background-position: center;
+	border-radius: 50%;
+}
+
+.buttons {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+}
+
+.button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 3rem;
+	width: 3rem;
+	margin: .5rem;
+	border-radius: 50%;
+	color: white;
+	cursor: pointer;
+}
+
+.delete {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	vertical-align: 0rem;
+	z-index: 1;
+}
+
+.button i {
+	color: white;
+}
+
+.red {
+	background-color: #dc3545;
+}
+
+.green {
+	background-color: #20c997;
+}
+
+.blue {
+	background-color: #398bf7;
+}
+
+.content_nav {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	border-bottom: 1px solid #eeeff0;
+	margin-bottom: 1rem;
+}
+
+.collection-item span, .collection-item i {
+	opacity: 0.6;
+}
+
+.collection-item span:hover, .collection-item i:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+
+.collection-item-link {
+	color: white;
+	margin: 0rem;
+}
+
+nav h4 {
+	margin: 2rem 0 2rem 1rem;
+}
+
+li {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+li span {
+	padding-left: .5rem;
+}
+
+.login_body {
+	background-image: url("../images/notebook-natural-laptop-macbook-wallpaper.jpg");
+	background-size: cover;
+}
+
+.login-container {
+	background-color: transparent;
+	box-shadow: none;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.login-container h1, .login-container h2 {
+	width: 100%;
+	text-align: center;
+	color: white;
+}
+
+.login-container h1 {
+	font-weight: 700;
+	background-color: transparent !important;
+}
+
+.form-container {
+	width: 30%;
+	color: white;
+	background-color: transparent;
+}
+
+input {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	font-family: "Whitney A", "Whitney B", "Avenir", Helvetica, sans-serif;
+	font-size: 16px;
+	height: auto;
+	padding: 21px 23px;
+	display: inline-block;
+	border: 2px solid white;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+.action_input_container {
+	position: relative;
+	cursor: pointer;
+}
+
+.delete_icon {
+	position: absolute;
+	top: 1.3rem;
+	left: 1.3rem;
+	color: white;
+}
+
+
+.submit {
+	margin-top: 2rem;
+	font-weight: 700;
+	background-color: #26c6da;
+	color: white;
+	border: none;
+}
+
+label span {
+	margin-top: 1rem;
+}
+
+#output_image {
+background-size: cover;
+background-position: center;
+height: 6rem;
+width: 6rem;
+border-radius: 50%;
+}
+
+.preview_header, #output_image {
+	display: none;
+}
+
+.hiddent_image_input {
+	display: none;
+}
+
+.errorMsg {
+	color: #dc3545;
+}
+
+.credenntials_span {
+	color: #26c6da;
+}
+
+
+@media screen and (max-width: 1200px) {
+	.main_content, .dashboard_body nav, .item_breakdown {
+		width: 100%;
+	}
+
+	.dashboard_body nav {
+		height: 8rem;
+	}
+
+	.collection-item {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.collection {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	h4 {
+		padding-left: 1rem;
+	}
+
+	nav h4 {
+	    margin: 1rem 0 1rem 1rem;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.avatar {
+		display: none;
+	}
+
+	.action_input_container {
+	    position: relative;
+	    cursor: pointer;
+	    margin: 0rem 3rem;
+	}
+}
+
+
